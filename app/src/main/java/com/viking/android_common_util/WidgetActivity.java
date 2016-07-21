@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class WidgetActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mListView ;
 
@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mListView = (ListView) findViewById(android.R.id.list);
+        setContentView(R.layout.layout_widget);
+        mListView = (ListView) findViewById(R.id.widget_list);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , android.R.layout.simple_expandable_list_item_1 , items) ;
         mListView.setAdapter(arrayAdapter);
         mListView.setOnItemClickListener(this);
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position){
             case 0:
-                startActivity(new Intent(this , WidgetActivity.class));
+                startActivity(new Intent(this , SimpleWidgetActivity.class));
                 break ;
         }
     }

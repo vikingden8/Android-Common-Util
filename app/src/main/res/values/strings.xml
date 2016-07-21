@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android-Common-Util</string>
+    <string name="marquee_text">This is marquee textview widget , hahahahahahhahahahahahhahahahahahhah</string>
 </resources>
