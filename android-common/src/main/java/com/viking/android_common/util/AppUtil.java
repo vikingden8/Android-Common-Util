@@ -18,6 +18,7 @@ package com.viking.android_common.util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.text.TextUtils;
 
 /**
@@ -43,6 +44,26 @@ public class AppUtil {
                 context.startActivity(launchIntentForPackage);
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * Open application information activity by package name
+     *
+     * @param context   The context to use.  Usually your {@link android.app.Application}
+     *                 or {@link android.app.Activity} object.
+     * @param packageName the package name of open application
+     * @return if package name exist in system and opened ,return true ; or return false ;
+     */
+    public static boolean openAppInfoByPackageName(Context context, String packageName) {
+        if (!TextUtils.isEmpty(packageName)) {
+            Intent intent = new Intent();
+            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + packageName));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK) ;
+            context.startActivity(intent);
+            return true;
         }
         return false;
     }

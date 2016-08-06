@@ -47,6 +47,10 @@ public class AppUtilTest {
 
     private static final int DEFAULT_TIMEOUT = 10*1000 ;
 
+    private static final String packagename = "com.google.android.youtube" ;
+    private static final String fakePakcagename = "com.google.android.fakeyoutube" ;
+    private static final String emptypackagename = "" ;
+
     @Before
     public void setUp() {
         // Initialize UiDevice instance
@@ -61,15 +65,26 @@ public class AppUtilTest {
     }
 
     @Test
-    public void testOpenAppByPackageName(){
+    public void openAppByPackageName(){
         //open an exist application by package name
-        String packagename = "com.google.android.youtube" ;
-        String fakePakcagename = "com.google.android.fakeyoutube" ;
-        String emptypackagename = "" ;
+
         Assert.assertTrue("open exist youtube application has failed.",AppUtil.openAppByPackageName(context ,packagename));
         mDevice.wait(Until.hasObject(By.pkg(packagename)) , DEFAULT_TIMEOUT) ;
         mDevice.pressHome() ;
         Assert.assertFalse("open not exist application has failed.",AppUtil.openAppByPackageName(context ,fakePakcagename));
         Assert.assertFalse("open empty application has failed.",AppUtil.openAppByPackageName(context ,emptypackagename));
+    }
+
+    @Test
+    public void openAppInfoByPackageName(){
+        //open an exist application by package name
+        String packagename = "com.google.android.youtube" ;
+        String fakePakcagename = "com.google.android.fakeyoutube" ;
+        String emptypackagename = "" ;
+        Assert.assertTrue("open exist youtube application has failed.",AppUtil.openAppInfoByPackageName(context ,packagename));
+        mDevice.wait(Until.hasObject(By.text("YouTube")) , DEFAULT_TIMEOUT) ;
+        mDevice.pressHome() ;
+        Assert.assertFalse("open not exist application has failed.",AppUtil.openAppInfoByPackageName(context ,fakePakcagename));
+        Assert.assertFalse("open empty application has failed.",AppUtil.openAppInfoByPackageName(context ,emptypackagename));
     }
 }
