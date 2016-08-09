@@ -28,6 +28,10 @@ import android.text.TextUtils;
  */
 public class AppUtil {
 
+    private AppUtil(){
+        throw new UnsupportedOperationException("use static methods") ;
+    }
+
     /**
      * open an application by package name
      *
