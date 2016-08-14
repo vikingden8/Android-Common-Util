@@ -289,4 +289,15 @@ public class VPreference {
         SharedPreferences sp = getSharedPreference(context);
         return sp.getBoolean(key, defaultValue);
     }
+
+    /**
+     * Remove all values from the preferences
+     *
+     * @param context The context to use.  Usually your {@link android.app.Application}
+     *                 or {@link android.app.Activity} object.
+     */
+    public static void clearAll(Context context){
+        SharedPreferences sp = getSharedPreference(context);
+        sp.edit().clear().apply() ;
+    }
 }
