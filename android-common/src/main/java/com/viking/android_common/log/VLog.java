@@ -46,6 +46,8 @@ public final class VLog {
 
     private static String TAG ;
 
+    private static boolean mIsTagEmpty = true;
+
     private static boolean ENABLE_LOG_PRINT = true ;
 
     public static void init(boolean enableLogPrint){
@@ -55,6 +57,7 @@ public final class VLog {
     public static void init(boolean enableLogPrint , String tag){
         ENABLE_LOG_PRINT = enableLogPrint ;
         TAG = tag ;
+        mIsTagEmpty = TextUtils.isEmpty(TAG);
     }
 
     public static void v(Object msg) {
@@ -154,8 +157,10 @@ public final class VLog {
 
         String tag = (tagStr == null ? className : tagStr);
 
-        if (TextUtils.isEmpty(tag)) {
+        if (mIsTagEmpty && TextUtils.isEmpty(tag)) {
             tag = TAG_DEFAULT;
+        } else if (!mIsTagEmpty) {
+            tag = TAG;
         }
 
         String msg = (objects == null) ? NULL_TIPS : getObjectsString(objects);
