@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.viking.android_common_util">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,10 +21,21 @@
         </activity>
         <activity
             android:name=".WidgetActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SimpleWidgetActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".WidgetActivity" />
+
+        <activity
+            android:name=".views.AboutActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".LogDemoActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

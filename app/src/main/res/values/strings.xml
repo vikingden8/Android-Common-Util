@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Android-Common-Util</string>
     <string name="marquee_text">This is marquee textview widget , hahahahahahhahahahahahhahahahahahhah</string>
+    <string name="menu_about">About</string>
+    <string name="about_description" translatable="false">Android Common Utils library is developed to reduce efforts to achieve common features of the android apps. While developing the apps, we realized that we’re coding for many common features in all the apps. For e.g. check the network’s availability, using shared preferences, parsing, etc. And like us, many other android developers might be doing the same…</string>
 </resources>

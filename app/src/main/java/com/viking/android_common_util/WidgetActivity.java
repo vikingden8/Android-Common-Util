@@ -21,7 +21,7 @@ public class WidgetActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_widget);
         mListView = (ListView) findViewById(R.id.widget_list);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this , android.R.layout.simple_expandable_list_item_1 , items) ;
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this , android.R.layout.simple_expandable_list_item_1 , items) ;
         mListView.setAdapter(arrayAdapter);
         mListView.setOnItemClickListener(this);
     }
