@@ -47,7 +47,6 @@ public class LogDemoActivity extends AppCompatActivity implements AdapterView.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mListView = new ListView(this) ;
-        VLog.init(true , "LogDemo");
         setContentView(mListView);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_expandable_list_item_1, items);
