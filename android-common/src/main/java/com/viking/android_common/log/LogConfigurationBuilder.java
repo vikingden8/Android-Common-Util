@@ -30,6 +30,7 @@ public final class LogConfigurationBuilder {
 
     boolean enableLogPrint = true;
 
+    //TODO add annotation process
     public LogConfigurationBuilder(@NonNull Application application){
 
     }

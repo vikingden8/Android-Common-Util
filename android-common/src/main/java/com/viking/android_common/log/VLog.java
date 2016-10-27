@@ -50,16 +50,50 @@ public final class VLog {
 
     private static LogConfiguration mConfig ;
 
-    public static void init(@NonNull Application application){
-        init(application , new LogConfigurationBuilder(application));
+    /**
+     * <p>
+     * Initialize VLog for a given Application.
+     * </p>
+     *
+     * @param app   Your Application class.
+     * @throws IllegalStateException if it is called more than once.
+     */
+    public static void init(@NonNull Application app){
+        init(app , new LogConfigurationBuilder(app));
     }
 
-    public static void init(@NonNull Application application , @NonNull LogConfigurationBuilder builder){
-        init(application , builder.build());
+    /**
+     * <p>
+     * Initialize VLog for a given Application.
+     * </p>
+     *
+     * @param app     Your Application class.
+     * @param builder LogConfigurationBuilder to manually set up VLog configuration.
+     */
+    public static void init(@NonNull Application app , @NonNull LogConfigurationBuilder builder){
+        init(app , builder.build());
     }
 
-    public static void init(@NonNull Application application , @NonNull LogConfiguration config){
-        mApplication = application ;
+    /**
+     * <p>
+     * Initialize VLog for a given Application.
+     *
+     * </p>
+     *
+     * @param app       Your Application class.
+     * @param config    LogConfiguration to manually set up VLog configuration.
+     * @throws IllegalStateException if it is called more than once.
+     */
+    public static void init(@NonNull Application app , LogConfiguration config){
+        if (mApplication != null) {
+            w("VLog#init called more than once. Won't do anything more.");
+            return;
+        }
+        mApplication = app ;
+        if (config == null) {
+            w("VLog#init called but no LogConfiguration provided");
+            return;
+        }
         mConfig = config ;
     }
 
