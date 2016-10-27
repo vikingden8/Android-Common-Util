@@ -15,6 +15,8 @@
  */
 package com.viking.android_common.log;
 
+import android.app.Application;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 /**
@@ -44,20 +46,21 @@ public final class VLog {
     static final int E = 0x5;
     static final int WTF = 0x6;
 
-    private static String TAG ;
+    private static Application mApplication ;
 
-    private static boolean mIsTagEmpty = true;
+    private static LogConfiguration mConfig ;
 
-    private static boolean ENABLE_LOG_PRINT = true ;
-
-    public static void init(boolean enableLogPrint){
-        ENABLE_LOG_PRINT = enableLogPrint ;
+    public static void init(@NonNull Application application){
+        init(application , new LogConfigurationBuilder(application));
     }
 
-    public static void init(boolean enableLogPrint , String tag){
-        ENABLE_LOG_PRINT = enableLogPrint ;
-        TAG = tag ;
-        mIsTagEmpty = TextUtils.isEmpty(TAG);
+    public static void init(@NonNull Application application , @NonNull LogConfigurationBuilder builder){
+        init(application , builder.build());
+    }
+
+    public static void init(@NonNull Application application , @NonNull LogConfiguration config){
+        mApplication = application ;
+        mConfig = config ;
     }
 
     public static void v(Object msg) {
@@ -110,7 +113,7 @@ public final class VLog {
 
     private static void printLog(int type, String tagStr, Object... objects) {
 
-        if (!ENABLE_LOG_PRINT) {
+        if (!mConfig.enableLogPrint()) {
             return;
         }
 
@@ -157,10 +160,10 @@ public final class VLog {
 
         String tag = (tagStr == null ? className : tagStr);
 
-        if (mIsTagEmpty && TextUtils.isEmpty(tag)) {
+        if (mConfig.isLogTagEmpty() && TextUtils.isEmpty(tag)) {
             tag = TAG_DEFAULT;
-        } else if (!mIsTagEmpty) {
-            tag = TAG;
+        } else if (!mConfig.isLogTagEmpty()) {
+            tag = mConfig.getLogTag();
         }
 
         String msg = (objects == null) ? NULL_TIPS : getObjectsString(objects);
