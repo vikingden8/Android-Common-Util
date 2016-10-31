@@ -20,22 +20,33 @@ import android.app.Application;
 import com.viking.android_common.log.LogConfiguration;
 import com.viking.android_common.log.LogConfigurationBuilder;
 import com.viking.android_common.log.VLog;
+import com.viking.android_common.log.annotation.VLogAnnotation;
 
 /**
  * description
  * author : Viking Den <vikingden@live.com>
  * time   : 2016/10/27 22:30
  */
+@VLogAnnotation(
+        logTag = "AnnotationTag",
+        enablePrintLog = true
+)
 public class DemoApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        LogConfigurationBuilder builder = new LogConfigurationBuilder(this) ;
+
+        // this is for builder
+        /*LogConfigurationBuilder builder = new LogConfigurationBuilder(this) ;
         builder.enableLogPrint(true) ;
         builder.setLogTag("DemoApp") ;
         LogConfiguration configuration = builder.build() ;
-        VLog.init(this , configuration);
+        VLog.init(this , configuration);*/
+
+
+        //this is for annotation
+        VLog.init(this);
 
     }
 }
