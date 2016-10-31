@@ -19,6 +19,8 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.viking.android_common.log.annotation.VLogAnnotation;
+
 /**
  * description
  * author : Viking Den <vikingden@live.com>
@@ -32,7 +34,11 @@ public final class LogConfigurationBuilder {
 
     //TODO add annotation process
     public LogConfigurationBuilder(@NonNull Application application){
-
+        final VLogAnnotation logConfig = application.getClass().getAnnotation(VLogAnnotation.class) ;
+        if (logConfig != null){
+            logTag = logConfig.logTag() ;
+            enableLogPrint = logConfig.enablePrintLog() ;
+        }
     }
 
     public LogConfiguration build(){
